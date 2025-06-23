@@ -1,6 +1,3 @@
-'use client';
-
-import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -22,8 +19,7 @@ import {
 } from 'lucide-react';
 import { insightsDB } from '@/lib/db';
 import Link from 'next/link';
-import { toast } from '@/hooks/use-toast';
-import { useState } from 'react';
+import ClientInsightActions from './ClientInsightActions';
 
 interface InsightPageProps {
   params: {
@@ -31,9 +27,13 @@ interface InsightPageProps {
   };
 }
 
+export function generateStaticParams() {
+  const insights = insightsDB.getAllInsightsSync();
+  return insights.map(insight => ({ id: insight.id }));
+}
+
 export default function InsightPage({ params }: InsightPageProps) {
   const insight = insightsDB.getInsightByIdSync(params.id);
-  const [likes, setLikes] = useState(insight?.likes || 0);
 
   if (!insight) {
     return (
@@ -44,7 +44,7 @@ export default function InsightPage({ params }: InsightPageProps) {
             <div className="text-8xl mb-4">❌</div>
             <h3 className="text-2xl font-bold text-slate-700 dark:text-slate-200 mb-4">Insight Not Found</h3>
             <p className="text-slate-600 dark:text-slate-400 text-lg mb-8">
-              The insight you're looking for doesn't exist or has been removed.
+              The insight you&#39;re looking for doesn&#39;t exist or has been removed.
             </p>
             <Link href="/insights">
               <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
@@ -57,35 +57,6 @@ export default function InsightPage({ params }: InsightPageProps) {
       </div>
     );
   }
-
-  const handleLike = async () => {
-    setLikes(prev => prev + 1);
-    toast({
-      title: 'Thanks for the like!',
-      description: 'Your appreciation helps us create better content.',
-    });
-  };
-
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: insight.title,
-          text: insight.title,
-          url: window.location.href,
-        });
-      } catch (err) {
-        // User cancelled sharing
-      }
-    } else {
-      // Fallback to copying URL
-      navigator.clipboard.writeText(window.location.href);
-      toast({
-        title: 'Link copied!',
-        description: 'The insight link has been copied to your clipboard.',
-      });
-    }
-  };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -175,7 +146,7 @@ export default function InsightPage({ params }: InsightPageProps) {
                   </div>
                   <div className="flex items-center gap-1">
                     <ThumbsUp className="w-4 h-4" />
-                    <span>{likes}</span>
+                    <ClientInsightActions id={insight.id} initialLikes={insight.likes} title={insight.title} />
                   </div>
                   <div className="flex items-center gap-1">
                     <Eye className="w-4 h-4" />
@@ -185,16 +156,6 @@ export default function InsightPage({ params }: InsightPageProps) {
                 <div className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
                   <Calendar className="w-3 h-3" />
                   <span>{formatDate(insight.publishedAt)}</span>
-                </div>
-                <div className="flex gap-2">
-                  <Button onClick={handleLike} variant="outline" size="sm" className="flex items-center gap-2">
-                    <ThumbsUp className="w-4 h-4" />
-                    Like
-                  </Button>
-                  <Button onClick={handleShare} variant="outline" size="sm" className="flex items-center gap-2">
-                    <Share2 className="w-4 h-4" />
-                    Share
-                  </Button>
                 </div>
               </div>
             </div>
