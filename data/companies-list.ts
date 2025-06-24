@@ -3926,7 +3926,7 @@ export const companiesBasicInfo: CompanyBasicInfo[] = [
 },
 {
     id: '114',
-    name: 'chegg india pvt. ltd',
+    name: 'Chegg india pvt. ltd',
     logo: '🏢',
     industry: 'Technology',
     description: 'chegg india pvt. ltd is a key player in the Technology industry.',
@@ -5863,5 +5863,64 @@ export const companiesBasicInfo: CompanyBasicInfo[] = [
 }
     ],
     rating: 3.9
+},
+{
+    id: '168',
+    name: 'Accenture',
+    logo: '🏢',
+    industry: 'Information Technology & Consulting',
+    description: 'Accenture is a global professional services company with leading capabilities in digital, cloud, and security.',
+    website: 'https://www.accenture.com',
+    size: '733,000+',
+    headquarters: 'Dublin, Ireland',
+    locations: [
+        {
+            city: 'Bangalore',
+            country: 'India',
+            isHeadquarters: false,
+            hiringFor: [
+                'Application Development Analyst',
+                'DevOps Engineer',
+                'Cloud Engineer',
+                'Data Engineer',
+                'Security Analyst'
+            ]
+        },
+        {
+            city: 'Mumbai',
+            country: 'India',
+            isHeadquarters: false,
+            hiringFor: [
+                'Software Engineer',
+                'Frontend Developer',
+                'Data Analyst',
+                'Business Analyst',
+                'SDE-1'
+            ]
+        },
+        {
+            city: 'Pune',
+            country: 'India',
+            isHeadquarters: false,
+            hiringFor: [
+                'Full Stack Developer',
+                'Backend Engineer',
+                'SAP Consultant',
+                'Cybersecurity Consultant'
+            ]
+        },
+        {
+            city: 'Dublin',
+            country: 'Ireland',
+            isHeadquarters: true,
+            hiringFor: [
+                'Cloud Solutions Architect',
+                'Technology Analyst',
+                'AI/ML Engineer',
+                'DevOps Specialist'
+            ]
+        }
+    ],
+    rating: 4.3
 },
 ];

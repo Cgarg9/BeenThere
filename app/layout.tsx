@@ -4,8 +4,11 @@ import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { Toaster } from '@/components/ui/toaster';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
+
+const GA_MEASUREMENT_ID = 'G-Z02RGTDL43'; // 🔁 Replace this with your real GA4 ID
 
 export const metadata: Metadata = {
   title: 'BeenThere - Learn from Those Who\'ve Been There',
@@ -20,10 +23,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Google Analytics Scripts */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+      </head>
       <body className={inter.className}>
-        <ThemeProvider
-          defaultTheme="system"
-        >
+        <ThemeProvider defaultTheme="system">
           <AuthProvider>
             {children}
             <Toaster />

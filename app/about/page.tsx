@@ -6,24 +6,34 @@ import { Users, Target, Heart, Lightbulb, TrendingUp, Globe, Github, Linkedin, M
 import Link from 'next/link';
 import { getDynamicStats } from '@/data/companies';
 
-const teamMembers = [
+type TeamMember = {
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+  linkedin: string;
+  github: string;
+  skills?: string[];
+};
+
+const teamMembers: TeamMember[] = [
   {
     name: 'Sugam Arora',
-    role: 'Co-Founder & Lead Developer',
+    role: 'Lead Developer',
     bio: 'Passionate about creating platforms that connect students with authentic career experiences and guidance.',
     image: '👨‍💻',
-    linkedin: '#',
-    github: '#',
-    skills: ['Full Stack Development', 'System Design', 'Product Strategy']
+    linkedin: 'https://www.linkedin.com/in/sugamarora23/',
+    github: 'https://github.com/SUGAM-ARORA',
+    skills: ['Building']
   },
   {
     name: 'Ojas Arora',
-    role: 'Co-Founder & Product Manager',
+    role: 'Manager',
     bio: 'Focused on building user-centric experiences that help students learn from those who\'ve been there.',
     image: '👨‍🎓',
-    linkedin: '#',
-    github: '#',
-    skills: ['Product Management', 'User Experience', 'Growth Strategy']
+    linkedin: 'http://www.linkedin.com/in/ojasarora14',
+    github: 'https://github.com/Ojas-Arora',
+    skills: ['Building']
   }
 ];
 
@@ -33,21 +43,21 @@ const values = [
     description: 'Connect students with authentic experiences from those who\'ve walked the path before.',
     icon: GraduationCap,
     color: 'from-blue-500 to-cyan-500',
-    impact: '15,000+ students guided'
+    impact: '1k+ students guided'
   },
   {
     title: 'Connect Communities',
     description: 'Bridge students across colleges and experiences, creating a unified support network.',
     icon: Users,
     color: 'from-purple-500 to-indigo-500',
-    impact: '500+ colleges represented'
+    impact: '10+ colleges represented'
   },
   {
     title: 'Inspire Growth',
     description: 'Real stories from real students, verified and curated to motivate and guide others.',
     icon: Heart,
     color: 'from-pink-500 to-rose-500',
-    impact: '2,000+ success stories'
+    impact: '200+ success stories'
   },
   {
     title: 'Guide Decisions',
@@ -68,7 +78,7 @@ const values = [
     description: 'Free and accessible to all students worldwide, breaking geographical barriers.',
     icon: Globe,
     color: 'from-indigo-500 to-blue-500',
-    impact: '50+ countries reached'
+    impact: '5+ countries reached'
   }
 ];
 
@@ -105,40 +115,40 @@ const brandStory = [
 
 const milestones = [
   {
-    year: '2024',
+    year: '2025',
     title: 'Platform Launch',
-    description: 'BeenThere goes live with 50+ companies and 200+ experiences',
+    description: 'BeenThere goes live with 5+ companies and 40+ experiences',
     icon: Rocket,
     color: 'from-blue-500 to-purple-500'
   },
-  {
-    year: '2024',
-    title: 'Community Growth',
-    description: '10,000+ students join the platform in first quarter',
-    icon: Users,
-    color: 'from-purple-500 to-pink-500'
-  },
-  {
-    year: '2024',
-    title: 'Insights Launch',
-    description: 'General career insights section added with senior guidance',
-    icon: Lightbulb,
-    color: 'from-pink-500 to-orange-500'
-  },
-  {
-    year: '2024',
-    title: 'Global Reach',
-    description: 'Students from 50+ countries accessing the platform',
-    icon: Globe,
-    color: 'from-orange-500 to-red-500'
-  }
+  // {
+  //   year: '2025',
+  //   title: 'Community Growth',
+  //   description: '10,000+ students join the platform in first quarter',
+  //   icon: Users,
+  //   color: 'from-purple-500 to-pink-500'
+  // },
+  // {
+  //   year: '2025',
+  //   title: 'Insights Launch',
+  //   description: 'General career insights section added with senior guidance',
+  //   icon: Lightbulb,
+  //   color: 'from-pink-500 to-orange-500'
+  // },
+  // {
+  //   year: '2025',
+  //   title: 'Global Reach',
+  //   description: 'Students from 50+ countries accessing the platform',
+  //   icon: Globe,
+  //   color: 'from-orange-500 to-red-500'
+  // }
 ];
 
 export default function AboutPage() {
   const stats = getDynamicStats();
 
   const dynamicStats = [
-    { label: 'Students Helped', value: `${Math.floor(stats.totalExperiences * 150)}+`, icon: Users, color: 'from-blue-500 to-cyan-500' },
+    { label: 'Students Helped', value: `${Math.floor(stats.totalExperiences * 50)}+`, icon: Users, color: 'from-blue-500 to-cyan-500' },
     { label: 'Companies Covered', value: `${stats.totalCompanies}+`, icon: Building, color: 'from-purple-500 to-pink-500' },
     { label: 'Success Stories', value: `${Math.floor(stats.totalExperiences * 0.7)}+`, icon: TrendingUp, color: 'from-emerald-500 to-teal-500' },
     { label: 'Resources Shared', value: '2,000+', icon: Lightbulb, color: 'from-orange-500 to-red-500' }
@@ -193,11 +203,11 @@ export default function AboutPage() {
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <Badge className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-0 px-4 py-2 text-sm font-semibold animate-float">
                 <Award className="w-4 h-4 mr-2" />
-                Trusted by 15,000+ Students
+                Trusted by 1k+ Students
               </Badge>
               <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 px-4 py-2 text-sm font-semibold animate-float" style={{ animationDelay: '1s' }}>
                 <Globe className="w-4 h-4 mr-2" />
-                50+ Countries Worldwide
+                5+ Countries Worldwide
               </Badge>
               <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-0 px-4 py-2 text-sm font-semibold animate-float" style={{ animationDelay: '2s' }}>
                 <Target className="w-4 h-4 mr-2" />
@@ -428,16 +438,18 @@ export default function AboutPage() {
                     {member.bio}
                   </p>
                   
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-3">Expertise</h4>
-                    <div className="flex flex-wrap gap-2 justify-center">
-                      {member.skills.map((skill, skillIndex) => (
-                        <Badge key={skillIndex} variant="outline" className="bg-slate-50 dark:bg-slate-800 text-xs">
-                          {skill}
-                        </Badge>
-                      ))}
+                  {member.skills && (
+                    <div className="mb-6">
+                      <h4 className="font-semibold text-slate-900 dark:text-white mb-3">Expertise</h4>
+                      <div className="flex flex-wrap gap-2 justify-center">
+                        {member.skills.map((skill: string, skillIndex: number) => (
+                          <Badge key={skillIndex} variant="outline" className="bg-slate-50 dark:bg-slate-800 text-xs">
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
                   
                   <div className="flex justify-center gap-4">
                     <Link href={member.linkedin} className="text-blue-600 hover:text-blue-700 transition-colors p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20">
