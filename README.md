@@ -9,7 +9,7 @@ To democratize access to authentic career insights by connecting students with t
 ## ✨ What BeenThere Stands For
 
 - **Learn from Experience**: Connect students with authentic experiences from those who've walked the path before
-- **Connect Communities**: Bridge students across colleges and experiences, creating a unified support network
+- **Connect Communities**: Bridge students across colleges and experiences, creating a unified support network  
 - **Inspire Growth**: Real stories from real students, verified and curated to motivate and guide others
 - **Guide Decisions**: Provide comprehensive insights to help students make informed career choices
 - **Navigate Challenges**: Help students overcome interview challenges with proven strategies and tips
@@ -18,7 +18,6 @@ To democratize access to authentic career insights by connecting students with t
 ## 🚀 Key Features
 
 ### 📊 Comprehensive Company Insights
-
 - **150+ Companies** with detailed profiles and multiple office locations
 - **Success rates** broken down by experience type (Full-time, Internship, PPO)
 - **Real interview experiences** from students across different colleges
@@ -26,21 +25,18 @@ To democratize access to authentic career insights by connecting students with t
 - **Dynamic statistics** that update automatically based on real data
 
 ### 🎓 College-Inclusive Approach
-
 - Experiences from students across **all college tiers**
 - **Off-campus placement** stories and strategies
 - College-specific filtering to find relevant experiences
 - Equal representation for all educational backgrounds
 
 ### 🔍 Advanced Search & Filtering
-
 - Filter by **college, company, role, difficulty, and experience type**
 - Search across companies, technologies, and student experiences
 - Smart filtering to find the most relevant insights
 - **Real-time search** with instant results
 
 ### 💡 Senior Insights Platform
-
 - **Career advice** from experienced professionals
 - **Industry insights** and trends
 - **Life lessons** from those who've walked the path
@@ -48,7 +44,6 @@ To democratize access to authentic career insights by connecting students with t
 - **Interactive engagement** with likes, shares, and discussions
 
 ### 📚 Comprehensive Learning Resources
-
 - **12+ Major Categories** covering all tech domains:
   - **Coding & DSA** - TakeUForward (Striver), LeetCode, GeeksforGeeks, InterviewBit
   - **System Design** - Scalability, architecture, distributed systems
@@ -64,13 +59,11 @@ To democratize access to authentic career insights by connecting students with t
   - **Learning Platforms** - Coursera, edX, Udemy, Pluralsight
 
 ### 🌟 Experience Types
-
 - **Full-time Placements**: Regular campus and off-campus hiring
 - **Internships**: Summer internship experiences and tips
 - **PPO Conversions**: Pre-placement offer conversion stories
 
 ### 🔐 Authentication System
-
 - **Dual account types**: Viewer and Contributor accounts
 - **Secure authentication** with email/password
 - **Role-based access** with admin capabilities
@@ -135,21 +128,18 @@ beenthere/
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- Node.js 18+
+- Node.js 18+ 
 - npm, yarn, or pnpm
 
 ### Installation
 
 1. **Clone the repository:**
-
 ```bash
 git clone https://github.com/yourusername/beenthere.git
 cd beenthere
 ```
 
 2. **Install dependencies:**
-
 ```bash
 npm install
 # or
@@ -159,7 +149,6 @@ pnpm install
 ```
 
 3. **Run the development server:**
-
 ```bash
 npm run dev
 # or
@@ -169,7 +158,7 @@ pnpm dev
 ```
 
 4. **Open your browser:**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+Navigate to [http://localhost:3000](http://localhost:3000)
 
 ### Building for Production
 
@@ -186,25 +175,21 @@ The project is configured for static export and can be deployed to any static ho
 ## 📊 Enhanced Features & Logic
 
 ### **Fixed Average Package Calculation**
-
 - ✅ **Excludes internship stipends** - Only counts Full-time and PPO packages
 - ✅ **Proper calculation** - Shows "N/A" when no full-time/PPO data available
 - ✅ **Clear labeling** - "Avg Package (FT/PPO)" to indicate what's included
 
 ### **Improved Success Rate Logic**
-
 - ✅ **Unified calculation** - All experience types treated equally
 - ✅ **Separate tracking** - Individual success rates for Full-time, Internship, and PPO
 - ✅ **Overall success** - Combined metric across all experience types
 
 ### **Dynamic Statistics**
-
 - ✅ **Real-time calculations** based on actual data
 - ✅ **Auto-updating** as new data is added
 - ✅ **Responsive metrics** that reflect current platform state
 
 ### **Enhanced User Experience**
-
 - ✅ **Responsive design** that works on all devices
 - ✅ **Dark/Light theme** with system preference detection
 - ✅ **Advanced animations** with glassmorphism effects
@@ -212,7 +197,6 @@ The project is configured for static export and can be deployed to any static ho
 - ✅ **Accessibility** with proper ARIA labels and keyboard navigation
 
 ## 🎯 Detailed Role Information
-
 - ✅ **Specific role titles**: SDE-1, SDE-2, DevOps Engineer, Financial Analyst, ML Engineer, etc.
 - ✅ **Location-based hiring** - Shows which roles are hired at which offices
 - ✅ **Enhanced filtering** - Filter by specific role types
@@ -221,7 +205,6 @@ The project is configured for static export and can be deployed to any static ho
 ## 📚 Latest Learning Resources
 
 ### **Featured Platforms:**
-
 - ✅ **TakeUForward (Striver)** - Complete DSA course with A2Z DSA sheet
 - ✅ **GeeksforGeeks** - Comprehensive tutorials and practice
 - ✅ **InterviewBit** - Structured interview preparation
@@ -230,7 +213,6 @@ The project is configured for static export and can be deployed to any static ho
 - ✅ **Hugging Face** - Transformer models and NLP
 
 ### **Specialized Tracks:**
-
 - ✅ **Data Analyst Track** - Google Data Analytics Certificate, Excel, SQL, Tableau
 - ✅ **AI Engineer Track** - Latest AI/ML frameworks and tools
 - ✅ **Modern Tech Stack** - Next.js 13+, TypeScript, Docker, Kubernetes
@@ -240,7 +222,6 @@ The project is configured for static export and can be deployed to any static ho
 We welcome contributions from the community! Here's how you can help:
 
 ### Adding New Experiences
-
 1. Fork the repository
 2. Add your experience data to `data/experiences.ts`
 3. Follow the existing data structure
@@ -248,20 +229,17 @@ We welcome contributions from the community! Here's how you can help:
 5. Submit a pull request
 
 ### Adding New Companies
-
 1. Create a new company entry in `data/companies-list.ts`
 2. Include office locations and hiring information
 3. Add at least one experience entry in `data/experiences.ts`
 4. Ensure all required fields are populated
 
 ### Improving Resources
-
 1. Update the resources in `app/resources/page.tsx`
 2. Add new categories or resources as needed
 3. Ensure proper categorization and difficulty levels
 
 ### Contributing Insights
-
 1. Add new insights to `lib/db.ts`
 2. Follow the existing data structure
 3. Include author information and key takeaways
@@ -270,7 +248,6 @@ We welcome contributions from the community! Here's how you can help:
 ## 🔧 Development Guidelines
 
 ### Code Style
-
 - Use TypeScript for all new code
 - Follow the existing component structure
 - Use Tailwind CSS for styling
@@ -278,7 +255,6 @@ We welcome contributions from the community! Here's how you can help:
 - Add loading states for better UX
 
 ### Component Guidelines
-
 - Keep components focused and reusable
 - Use proper TypeScript interfaces
 - Implement accessibility features
@@ -286,7 +262,6 @@ We welcome contributions from the community! Here's how you can help:
 - Follow the existing design system
 
 ### Data Management
-
 - Use the existing data structure
 - Validate all data inputs
 - Handle edge cases gracefully

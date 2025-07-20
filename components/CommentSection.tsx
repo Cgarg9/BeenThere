@@ -3,26 +3,12 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Comment } from '@/types/auth';
-import {
-  getCommentsForExperience,
-  addComment,
-  getTopLevelComments,
-  getCommentReplies,
-} from '@/data/comments';
+import { getCommentsForExperience, addComment, getTopLevelComments, getCommentReplies } from '@/data/comments';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import {
-  MessageSquare,
-  Send,
-  Reply,
-  Shield,
-  User,
-  Users,
-  UserCheck,
-  Clock,
-} from 'lucide-react';
+import { MessageSquare, Send, Reply, Shield, User, Users, UserCheck, Clock } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import Link from 'next/link';
 
@@ -38,13 +24,7 @@ interface CommentItemProps {
   onCancelReply: () => void;
 }
 
-function CommentItem({
-  comment,
-  experienceId,
-  onReply,
-  replyingTo,
-  onCancelReply,
-}: CommentItemProps) {
+function CommentItem({ comment, experienceId, onReply, replyingTo, onCancelReply }: CommentItemProps) {
   const { user, isAuthenticated } = useAuth();
   const [replyContent, setReplyContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -72,7 +52,7 @@ function CommentItem({
       setReplies(prev => [...prev, newReply]);
       setReplyContent('');
       onCancelReply();
-
+      
       toast({
         title: 'Reply posted!',
         description: 'Your reply has been added to the discussion.',
@@ -113,10 +93,8 @@ function CommentItem({
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const now = new Date();
-    const diffInHours = Math.floor(
-      (now.getTime() - date.getTime()) / (1000 * 60 * 60)
-    );
-
+    const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60));
+    
     if (diffInHours < 1) return 'Just now';
     if (diffInHours < 24) return `${diffInHours}h ago`;
     if (diffInHours < 168) return `${Math.floor(diffInHours / 24)}d ago`;
@@ -125,9 +103,7 @@ function CommentItem({
 
   return (
     <div className={`${comment.parentId ? 'ml-8 mt-4' : ''}`}>
-      <div
-        className={`p-4 rounded-lg border ${comment.isAdminReply ? 'bg-red-50/50 dark:bg-red-900/10 border-red-200 dark:border-red-800' : 'bg-slate-50/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700'}`}
-      >
+      <div className={`p-4 rounded-lg border ${comment.isAdminReply ? 'bg-red-50/50 dark:bg-red-900/10 border-red-200 dark:border-red-800' : 'bg-slate-50/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700'}`}>
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-2">
@@ -137,11 +113,7 @@ function CommentItem({
               </span>
             </div>
             <Badge className={`${getUserBadgeColor(comment.userType)} text-xs`}>
-              {comment.userType === 'admin'
-                ? 'Admin'
-                : comment.userType === 'contributor'
-                  ? 'Contributor'
-                  : 'Viewer'}
+              {comment.userType === 'admin' ? 'Admin' : comment.userType === 'contributor' ? 'Contributor' : 'Viewer'}
             </Badge>
             {comment.isAdminReply && (
               <Badge className="bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-400 text-xs">
@@ -154,11 +126,11 @@ function CommentItem({
             {formatDate(comment.createdAt)}
           </div>
         </div>
-
+        
         <p className="text-slate-700 dark:text-slate-300 mb-3 leading-relaxed">
           {comment.content}
         </p>
-
+        
         {!comment.parentId && isAuthenticated && user?.userType !== 'admin' && (
           <Button
             variant="ghost"
@@ -170,12 +142,12 @@ function CommentItem({
             Reply
           </Button>
         )}
-
+        
         {replyingTo === comment.id && (
           <div className="mt-4 space-y-3">
             <Textarea
               value={replyContent}
-              onChange={e => setReplyContent(e.target.value)}
+              onChange={(e) => setReplyContent(e.target.value)}
               placeholder="Write your reply..."
               className="bg-white dark:bg-slate-800"
               rows={3}
@@ -199,17 +171,21 @@ function CommentItem({
                   </>
                 )}
               </Button>
-              <Button variant="outline" size="sm" onClick={onCancelReply}>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={onCancelReply}
+              >
                 Cancel
               </Button>
             </div>
           </div>
         )}
       </div>
-
+      
       {replies.length > 0 && (
         <div className="mt-2">
-          {replies.map(reply => (
+          {replies.map((reply) => (
             <CommentItem
               key={reply.id}
               comment={reply}
@@ -251,7 +227,7 @@ export default function CommentSection({ experienceId }: CommentSectionProps) {
 
       setComments(prev => [...prev, comment]);
       setNewComment('');
-
+      
       toast({
         title: 'Comment posted!',
         description: 'Your question has been added to the discussion.',
@@ -272,16 +248,13 @@ export default function CommentSection({ experienceId }: CommentSectionProps) {
       <CardHeader>
         <div className="flex items-center gap-2">
           <MessageSquare className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-          <h3 className="text-lg font-semibold">
-            Discussion ({comments.length})
-          </h3>
+          <h3 className="text-lg font-semibold">Discussion ({comments.length})</h3>
         </div>
         <p className="text-sm text-slate-600 dark:text-slate-400">
-          Ask questions about this experience. Only logged-in users can
-          participate.
+          Ask questions about this experience. Only logged-in users can participate.
         </p>
       </CardHeader>
-
+      
       <CardContent>
         {!isAuthenticated ? (
           <div className="text-center py-8 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700">
@@ -299,7 +272,9 @@ export default function CommentSection({ experienceId }: CommentSectionProps) {
                 </Button>
               </Link>
               <Link href="/auth/signup">
-                <Button variant="outline">Create Account</Button>
+                <Button variant="outline">
+                  Create Account
+                </Button>
               </Link>
             </div>
           </div>
@@ -320,35 +295,27 @@ export default function CommentSection({ experienceId }: CommentSectionProps) {
                     {user?.name}
                   </span>
                 </div>
-                <Badge
-                  className={`text-xs ${
-                    user?.userType === 'admin'
-                      ? 'bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-400'
-                      : user?.userType === 'contributor'
-                        ? 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400'
-                        : 'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-300'
-                  }`}
-                >
-                  {user?.userType === 'admin'
-                    ? 'Admin'
+                <Badge className={`text-xs ${
+                  user?.userType === 'admin' 
+                    ? 'bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-400'
                     : user?.userType === 'contributor'
-                      ? 'Contributor'
-                      : 'Viewer'}
+                    ? 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400'
+                    : 'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-300'
+                }`}>
+                  {user?.userType === 'admin' ? 'Admin' : user?.userType === 'contributor' ? 'Contributor' : 'Viewer'}
                 </Badge>
               </div>
-
+              
               <Textarea
                 value={newComment}
-                onChange={e => setNewComment(e.target.value)}
-                placeholder={
-                  user && user.userType === 'admin'
-                    ? 'Respond to questions and provide guidance...'
-                    : 'Ask a question about this experience...'
-                }
+                onChange={(e) => setNewComment(e.target.value)}
+                placeholder={user && user.userType === 'admin' 
+                  ? "Respond to questions and provide guidance..." 
+                  : "Ask a question about this experience..."}
                 className="bg-white dark:bg-slate-800"
                 rows={4}
               />
-
+              
               <Button
                 onClick={handleCommentSubmit}
                 disabled={!newComment.trim() || isSubmitting}
@@ -362,9 +329,7 @@ export default function CommentSection({ experienceId }: CommentSectionProps) {
                 ) : (
                   <>
                     <Send className="w-4 h-4 mr-2" />
-                    {user?.userType === 'admin'
-                      ? 'Post Response'
-                      : 'Ask Question'}
+                    {user?.userType === 'admin' ? 'Post Response' : 'Ask Question'}
                   </>
                 )}
               </Button>
@@ -378,7 +343,7 @@ export default function CommentSection({ experienceId }: CommentSectionProps) {
               </div>
             ) : (
               <div className="space-y-4">
-                {comments.map(comment => (
+                {comments.map((comment) => (
                   <CommentItem
                     key={comment.id}
                     comment={comment}
